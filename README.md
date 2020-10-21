@@ -6,7 +6,9 @@ This project is not production ready and is in an alpha state.
 ## Create an openshift cluster on GCP
 
 1. Login to openshift https://cloud.redhat.com/openshift/
+
 2. Press "Create Cluster" button--> Red Hat Openshift Container platform-->GCP--> Installer provision infrastructure
+
 3. Folow the instruction and download the binary for openshift-install and openshift-client, unzip them and register to the PATH environment var:
 
 For macOS:
@@ -71,12 +73,15 @@ gcloud services enable storage-api.googleapis.com
 gcloud services enable storage-component.googleapis.com
 gcloud services enable cloudbilling.googleapis.com 
 ```
+
 7. Enable billing for our project
+
 8. Create a service account and attach it to the project:
 ```bash
 gcloud iam service-accounts create open-shift-sa
 gcloud projects add-iam-policy-bindings openshift-sandbox --member  "serviceAccount:open-shift-sa@openshift-sandbox-id.iam.gserviceaccount.com" --role "roles/owner"
 ``` 
+
 9. Set credentials:
 ```bash
 mkdir -p ~/.gcp
@@ -87,6 +92,7 @@ gcloud iam service-accounts keys create ~/.gsp/osServiceAccount.json --iam-accou
 ```bash
 mkdir ~/oshift
 ```
+
 11. Make sure you have a DNS domain. Delegate a subdomain to google cloud
 ```bash
 gcloud dns managed-zones openshift-domain
@@ -102,6 +108,7 @@ Check that the records match using this commands:
 gcloud dns managed-zones describe openshift-domain
 dig @8.8.8.8 mydomain.com NS +short
 ```
+
 12. Create the cluster. Follow the instruction from comand line. 
 ```bash
  openshift-install create cluster --dir ~/oshift --log-level=debug
@@ -109,7 +116,8 @@ dig @8.8.8.8 mydomain.com NS +short
 13. Please do not delete the folder where the installation was made, in our case ~/oshift. If you delete this you will have to decommission manually the infrastructure from GCP.
 
 14. If you want to delete the cluster run this cmd to decommission infrastructure on GCP:
+
 ```bash
  openshift-install destroy cluster --dir ~/oshift --log-level=debug
 ```
- To remove the cluster from redhat list you have to go to Clusters menu from Redhat, select the cluster, press Actions and choose Archive cluster option.
+ To remove the cluster from Redhat list you have to go to Clusters menu, select the cluster, press Actions and choose Archive cluster option.
