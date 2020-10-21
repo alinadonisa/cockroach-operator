@@ -9,7 +9,7 @@ This project is not production ready and is in an alpha state.
 2. Press "Create Cluster" button--> Red Hat Openshift Container platform-->GCP--> Installer provision infrastructure
 3. Folow the instruction and download the binary for openshift-install and openshift-client, unzip them and register to the PATH environment var:
 
-For macos:
+For macOS:
 ```bash
 curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-install-mac.tar.gz
 curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz
@@ -72,7 +72,7 @@ gcloud services enable storage-component.googleapis.com
 gcloud services enable cloudbilling.googleapis.com 
 ```
 7. Enable billing for our project
-8. Create an service account and attach it to the project:
+8. Create a service account and attach it to the project:
 ```bash
 gcloud iam service-accounts create open-shift-sa
 gcloud projects add-iam-policy-bindings openshift-sandbox --member  "serviceAccount:open-shift-sa@openshift-sandbox-id.iam.gserviceaccount.com" --role "roles/owner"
@@ -82,7 +82,7 @@ gcloud projects add-iam-policy-bindings openshift-sandbox --member  "serviceAcco
 mkdir -p ~/.gcp
 gcloud iam service-accounts keys create ~/.gsp/osServiceAccount.json --iam-account open-shift-sa@openshift-sandbox-id.iam.gserviceaccount.com 
 ```
-10. Create a folder where the in instalation of the cluster will be saved
+10. Create a folder where the installation of the cluster will be saved
 
 ```bash
 mkdir ~/oshift
@@ -106,12 +106,10 @@ dig @8.8.8.8 mydomain.com NS +short
 ```bash
  openshift-install create cluster --dir ~/oshift --log-level=debug
 ```
-13. Plesae do not delete the folder where the installation was made, in our case ~/oshift. If you delete this you will have to decomission manually the infrastructure from GCP.
+13. Please do not delete the folder where the installation was made, in our case ~/oshift. If you delete this you will have to decommission manually the infrastructure from GCP.
 
-14. If you want to delete the cluster run this cmd to decommision infrastructure on GCP:
+14. If you want to delete the cluster run this cmd to decommission infrastructure on GCP:
 ```bash
  openshift-install destroy cluster --dir ~/oshift --log-level=debug
 ```
  To remove the cluster from redhat list you have to go to Clusters menu from Redhat, select the cluster, press Actions and choose Archive cluster option.
-
- 
